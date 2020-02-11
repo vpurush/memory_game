@@ -1,0 +1,15 @@
+.mg_card{
+    cursor: pointer;
+    margin: 10px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    display: inline-block;
+    height: 25vh;
+    width: 18vw;
+    flex: 1 0 ;
+}
+
+.mg_card img{
+    height: 100%;
+    width: 100%;
+}
