@@ -1,0 +1,34 @@
+.memory_game{
+    position: relative;
+}
+
+.memory_game .game_overlay{
+    z-index: 99;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memory_game .game_overlay .restart_btn{
+    border: 1;
+    background: #282c34;
+    color: white;
+    outline: none;
+    box-shadow: none;
+    border-radius: 5px;
+    width: 10em;
+    height: 2em;
+    -webkit-appearance: none;
+}
+
+
+.memory_game .game_overlay .restart_btn[disabled]{
+    color: gray;
+}

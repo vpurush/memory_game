@@ -6,16 +6,25 @@ class MGCard extends React.Component {
         super(props);
 
         this.revealCard = this.revealCard.bind(this);
+        this.onLoadCardImage = this.onLoadCardImage.bind(this);
     }
 
     revealCard(){
-        this.props.revealCard(this.props.card);
+        this.props.revealCard(this.props.card.id);
+    }
+
+    onLoadCardImage(){
+        // console.log("load", this.props.card.id);
+        this.props.onLoadCardImage(this.props.card.id);
     }
     
     render(){
         return (
             <span className="mg_card" onClick={this.revealCard}>
-                {this.props.card.isFaceUp ? <img src={this.props.card.img} /> : null}
+                <img src={this.props.card.img} 
+                    className={this.props.card.isFaceUp ? "": "hidden"} 
+                    onLoad={this.onLoadCardImage}
+                    />
             </span>
         );
     }

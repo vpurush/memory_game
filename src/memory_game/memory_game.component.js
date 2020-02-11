@@ -14,12 +14,13 @@ class MemoryGame extends React.Component {
 
         this.updateCards = this.updateCards.bind(this);
         this.startNewGame = this.startNewGame.bind(this);
+        this.gameOver = this.gameOver.bind(this);
     }
 
     /**
      * 
-     * @param {Array to be shuffled} arr 
-     * @returns Shuffled array
+     * @param {Array} arr Array to be shuffled 
+     * @return {Array} Shuffled array
      */
     shuffleArray(arr){
         const newArr = [];
@@ -31,6 +32,11 @@ class MemoryGame extends React.Component {
         return newArr;
     }
 
+    /**
+     * 
+     * @param {number} noOfCards Number of cards
+     * @param {Array} images List of images
+     */
     generateCards(noOfCards, images){
         let cards = [];
 
@@ -62,16 +68,23 @@ class MemoryGame extends React.Component {
         cards = cards.slice(0, noOfCards);
 
         // Shuffle the array to not have same images next to each other
-        cards = this.shuffleArray(cards);
+        // cards = this.shuffleArray(cards);
         console.log(cards);
 
         return cards;
     }
 
+    /**
+     * Starts a new game
+     */
     startNewGame(){
+        this.setState({
+            loadingImages: true
+        });
         MemoryGameService.GetImages(8).then((images) => {
             this.setState({
-                cards: this.generateCards(15, images)
+                cards: this.generateCards(15, images),
+                hasWon: false
             });
         });
     }
@@ -95,7 +108,12 @@ class MemoryGame extends React.Component {
     render(){
         return (
             <div className="memory_game">
-                <MGPallet updateCards={this.updateCards} cards={this.state.cards}></MGPallet>
+                {this.state.hasWon ? 
+                    <div className="game_overlay">
+                        <button className="restart_btn" onClick={this.startNewGame}>Restart Game</button>
+                    </div> 
+                : null}
+                <MGPallet updateCards={this.updateCards} cards={this.state.cards} gameOver={this.gameOver}></MGPallet>
             </div>
         );
     }

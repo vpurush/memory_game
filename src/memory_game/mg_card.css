@@ -4,12 +4,16 @@
     border: 1px solid darkgray;
     border-radius: 5px;
     display: inline-block;
-    height: 25vh;
-    width: 18vw;
-    flex: 1 0 ;
+    min-height: 150px;
+    min-width: 100px;
+    flex: 0 0;
 }
 
 .mg_card img{
     height: 100%;
     width: 100%;
+}
+
+.mg_card img.hidden{
+    visibility: hidden;
 }
