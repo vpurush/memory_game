@@ -17,7 +17,7 @@ Sufficient unit tests have been written which can be executed using the followin
 
 ### Start the App in production mode
 
-Run the following command to start the app in development mode
+Run the following command to start the app in production mode
 
 `npm run build`
 
