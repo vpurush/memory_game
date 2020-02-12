@@ -25,6 +25,11 @@ class MemoryGame extends React.PureComponent {
         }
     }
 
+    /**
+     * 
+     * @param {Array} cards 
+     * Invokes parent's method when all pairs have been discovered
+     */
     checkGameStatus(cards){
         const noOfFaceUpCards = cards.filter(c => c.isFaceUp).length;
         if (noOfFaceUpCards == (cards.length - 1)) {
@@ -46,7 +51,9 @@ class MemoryGame extends React.PureComponent {
             })
             currentCard.isFaceUp = !currentCard.isFaceUp;
 
-            if (previouslyRevealedCard && previouslyRevealedCard.img == currentCard.img){
+            if (previouslyRevealedCard && 
+                previouslyRevealedCard.img === currentCard.img &&
+                previouslyRevealedCard.id !== currentCard.id){
                 previouslyRevealedCard.matchFound = true;
                 currentCard.matchFound = true;
                 this.checkGameStatus(updatedCards);
@@ -64,6 +71,9 @@ class MemoryGame extends React.PureComponent {
         }
     }
 
+    /**
+     * Convenience method to lay the elements out in an acceptable form
+     */
     getPalletRows(cards){
         const palletRows = [];
         const len = cards.length;
@@ -75,6 +85,11 @@ class MemoryGame extends React.PureComponent {
         return palletRows;
     }
 
+    /**
+     * 
+     * @param {Number} cardId 
+     * This is invoked by the child component when its image is loaded
+     */
     onLoadCardImage(cardId){
         let updatedCards = [...this.props.cards];
         const currentCard = updatedCards.find(c => c.id == cardId);
@@ -87,7 +102,7 @@ class MemoryGame extends React.PureComponent {
             <div className="mg_pallet">
                 {this.state.hasAllImagesLoaded ? null : 
                     <div className="mg_pallet_loading">
-                        <span>Images are getting loaded. Please wait.</span>
+                        <span>Images are being loaded. Please wait.</span>
                     </div>
                 }
                 {this.getPalletRows(this.props.cards).map((palletRow, i) => {

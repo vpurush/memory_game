@@ -41,7 +41,7 @@ class MemoryGame extends React.Component {
         let cards = [];
 
         // Check if there are enough images to create the cards
-        if(noOfCards > images * 2){
+        if(noOfCards > images.length * 2){
             throw new Error("Not enough images");
         }
 
@@ -68,8 +68,8 @@ class MemoryGame extends React.Component {
         cards = cards.slice(0, noOfCards);
 
         // Shuffle the array to not have same images next to each other
-        // cards = this.shuffleArray(cards);
-        console.log(cards);
+        cards = this.shuffleArray(cards);
+        // console.log(cards);
 
         return cards;
     }
@@ -93,12 +93,20 @@ class MemoryGame extends React.Component {
         this.startNewGame();
     }
 
+    /**
+     * 
+     * @param {Array} cards 
+     * Updates the cards when child element modifies it
+     */
     updateCards(cards){
         this.setState({
             cards
         });
     }
 
+    /**
+     * This is called by the child component when the game is over
+     */
     gameOver(){
         this.setState({
             hasWon: true
@@ -110,10 +118,10 @@ class MemoryGame extends React.Component {
             <div className="memory_game">
                 {this.state.hasWon ? 
                     <div className="game_overlay">
+                        <div>I hope you enjoyed the game. Thanks for playing.</div>
                         <button className="restart_btn" onClick={this.startNewGame}>Restart Game</button>
                     </div> 
-                : null}
-                <MGPallet updateCards={this.updateCards} cards={this.state.cards} gameOver={this.gameOver}></MGPallet>
+                : <MGPallet updateCards={this.updateCards} cards={this.state.cards} gameOver={this.gameOver}></MGPallet>}
             </div>
         );
     }

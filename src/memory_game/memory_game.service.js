@@ -11,11 +11,11 @@ const GetImages = (noOfImages) => {
                 reject(err)
             }
 
-            console.log("body", body);
+            // console.log("body", body);
             const imageList = JSON.parse(body);
             const imageURLList = imageList.map(i => {
                 let imgId = i.id;
-                return `${Constants.URL.IMG_URL_PREFIX}/${imgId}/200/300`
+                return `${Constants.URL.IMG_URL_PREFIX}${imgId}/200/300`
             });
             resolve(imageURLList.slice(0, noOfImages));
         });

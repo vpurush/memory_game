@@ -1,5 +1,8 @@
 .memory_game{
     position: relative;
+    height: 90vh;
+    width: 100%;
+    overflow: scroll;
 }
 
 .memory_game .game_overlay{
@@ -14,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .memory_game .game_overlay .restart_btn{

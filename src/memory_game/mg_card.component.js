@@ -9,10 +9,16 @@ class MGCard extends React.Component {
         this.onLoadCardImage = this.onLoadCardImage.bind(this);
     }
 
+    /**
+     * Invokes parent components method to reveal the card image
+     */
     revealCard(){
         this.props.revealCard(this.props.card.id);
     }
 
+    /**
+     * This is invoked by onLoad handler of <img>
+     */
     onLoadCardImage(){
         // console.log("load", this.props.card.id);
         this.props.onLoadCardImage(this.props.card.id);
