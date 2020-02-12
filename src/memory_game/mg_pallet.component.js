@@ -66,7 +66,7 @@ class MemoryGame extends React.PureComponent {
                         previouslyRevealedCard.isFaceUp = false;
                         currentCard.isFaceUp = false;
                         this.props.updateCards(updatedCards);
-                    }, 500);
+                    }, 300);
                 }
             }
             this.props.updateCards(updatedCards);
