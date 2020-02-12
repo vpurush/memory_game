@@ -56,7 +56,9 @@ class MemoryGame extends React.PureComponent {
                 previouslyRevealedCard.id !== currentCard.id){
                 previouslyRevealedCard.matchFound = true;
                 currentCard.matchFound = true;
-                this.checkGameStatus(updatedCards);
+                setTimeout(() => {
+                    this.checkGameStatus(updatedCards);
+                }, 500);
             } else {
                 if (previouslyRevealedCard) {
                     setTimeout(() => {
